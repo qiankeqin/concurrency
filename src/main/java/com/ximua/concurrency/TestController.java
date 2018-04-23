@@ -12,4 +12,10 @@ public class TestController {
     public String testSpringBoot(){
         return "Hello,SpringBoot";
     }
+
+    @GetMapping("/test")
+    @ResponseBody
+    public String test(){
+        return "test";
+    }
 }
