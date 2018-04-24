@@ -9,13 +9,13 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
 @NotThreadSafe
-public class CountExample1 {
+public class CountExample3 {
     //请求总数
     public static int clientTotal = 5000;
     //同时并发执行到线程数
     public static int threadTotal = 200;
 
-    public static int count = 0;
+    public static volatile int count = 0;
 
     public static void main(String[] args) throws InterruptedException {
         ExecutorService executorService = Executors.newCachedThreadPool();
