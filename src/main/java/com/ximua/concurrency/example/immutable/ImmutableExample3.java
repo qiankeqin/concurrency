@@ -17,6 +17,7 @@ public class ImmutableExample3 {
     private final static ImmutableMap<Integer,Integer> map2 =
             ImmutableMap.<Integer,Integer>builder().put(1,2).put(3,4).build();
     public static void main(String[] args) {
-        map.put(1,4);
+//        map.put(1,4);
+        System.out.println(map.get(1));
     }
 }
