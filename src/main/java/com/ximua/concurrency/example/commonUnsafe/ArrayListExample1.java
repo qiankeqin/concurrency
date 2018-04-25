@@ -5,14 +5,16 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
+
 @Slf4j
 @NotThreadSafe
-public class DateFormatExample1 {
-    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+public class ArrayListExample1 {
 
     //请求总数
     public static int clientTotal = 5000;
@@ -21,17 +23,19 @@ public class DateFormatExample1 {
 
     public static int count = 0;
 
-    public static StringBuffer stringBuffer = new StringBuffer();
+    private static List<Integer> list = new ArrayList<>();
+
 
     public static void main(String[] args) throws InterruptedException {
         ExecutorService executorService = Executors.newCachedThreadPool();
         final Semaphore semaphore = new Semaphore(threadTotal);
         final CountDownLatch countDownLatch = new CountDownLatch(clientTotal);
         for(int i = 0;i < clientTotal; i++){
+            final int count = i;
             executorService.execute(()->{
                 try {
                     semaphore.acquire();
-                    parseDate();
+                    addList(count);
                     semaphore.release();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -42,15 +46,12 @@ public class DateFormatExample1 {
 
         countDownLatch.await();
         executorService.shutdown();
+        log.info("size:{}",list.size());
 
     }
 
 
-    public static void parseDate(){
-        try {
-            simpleDateFormat.parse("20180425");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public static void addList(int i){
+        list.add(i);
     }
 }
