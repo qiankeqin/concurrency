@@ -1,10 +1,12 @@
 package com.ximua.concurrency.example.publish;
 
 import com.ximua.concurrency.annotations.NotThreadSafe;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
 
 @NotThreadSafe
+@Slf4j
 public class UnSafePublish {
     private String[] states = {"a","b","c"};
 

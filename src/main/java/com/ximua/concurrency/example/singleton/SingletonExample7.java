@@ -2,6 +2,7 @@ package com.ximua.concurrency.example.singleton;
 
 import com.ximua.concurrency.annotations.Recommand;
 import com.ximua.concurrency.annotations.ThreadSafe;
+import lombok.extern.slf4j.Slf4j;
 
 @ThreadSafe
 @Recommand
